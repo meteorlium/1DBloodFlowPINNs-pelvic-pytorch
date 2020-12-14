@@ -1,0 +1,12 @@
+train.py:
+
+epoch = 290000 + 50000
+lr = 1e-3
+params = [{"params": net_i.parameters()} for net_i in net]
+optimizer = torch.optim.Adam(params, lr=lr)
+lr_scheduler = torch.optim.lr_scheduler.StepLR(
+    optimizer, step_size=290000, gamma=0.1)
+
+utility.py:
+
+add t_residual to draw()
