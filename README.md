@@ -10,7 +10,7 @@
 
 ## 代码
 
-### 文件
+### 文件及运行方法
 
 - /data：用到的数据。
 - /pyfile1207：某次训练后的结果，仅供参考。包括result_loss，result_model，result_Pressure，result_Velocity。这些文件夹说明见下方。
@@ -22,7 +22,17 @@
 - draw_log_loss.py：画出训练过程中loss变化图。
 - loss.py：PINN中的定义损失函数。
 - net.py：PINN网络结构。
-- 
+- test.py：使用训练好的模型预测。
+- train.py：训练脚本。
+- utility.py：功能函数。
+
+运行方法：
+
+- 训练前清空result_Pressure、result_Velocity、result_loss、result_model。不清空也没关系，会自动覆盖。如果要保留训练结果，需要将这些文件储存到别的地方。
+- 运行train.py即可。
+- 训练过程中可查看result_Velocity和result_Pressure，观察模型训练情况。
+- 训练结束后，运行draw_log_loss.py，可在result_loss/log_loss_4.jpg查看损失函数变化情况。
+- 训练结束后，可使用test.py，使用训练好的模型进行预测。
 
 ### requirements
 
@@ -46,7 +56,23 @@
 
 测试脚本为test.py，可自定义x，t，i_vessel。
 
-### 模型结果
+## 结果
 
-pyflie1207保存了一次训练得到的
+pyflie1207保存了一次训练得到的结果，这次训练使用的超参数设置（学习率、参数初始化方法等）与原tensorflow程序相同。
+
+训练后的模型在论文中设定的test points位置的预测结果如下图所示：
+
+![](README.assets/Comparative_Pressure_339.jpg)
+
+图中展示了7个血管中test points位置的血压随时间按变化的情况。其中红色曲线为有限元方法计算的参考结果，蓝色曲线为使用神经网络计算的结果。
+
+这次训练过程中损失函数变化如下图所示：
+
+![](README.assets/log_loss_4.jpg)
+
+数值结果和损失函数变化曲线都基本与原tensorflow程序相同。
+
+但使用神经网络的缺点是模型结构、学习率等超参数不容易确定，如果设定不好容易陷入局部最优解，在求解偏微分方程的问题中影响很大。下图和调试过程中某次更改学习率变化策略后的结果，虽然损失函数变化看起来正常，但预测的血压函数在测试点的值与参考结果相差很大。
+
+![](README.assets/Comparative_Pressure_339 copy.jpg)
 

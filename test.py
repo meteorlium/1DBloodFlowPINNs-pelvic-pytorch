@@ -20,9 +20,9 @@ if __name__ == "__main__":
     # t range: t in [0, 2.1825]
     t = torch.tensor([[1.]])
 
-    # you can input more (x, t) together,
-    # e.g. x = torch.tensor([[0.1], [0.11], [0.12]])
-    #      t = torch.tensor([[1.], [1.], [1.]])
+    # you can input more (x, t) together, e.g.
+    # x = torch.tensor([[0.1], [0.11], [0.12]])
+    # t = torch.tensor([[1.], [1.], [1.]])
 
     print(f"i_vessel = {i_vessel}")
     print(f"x = {x}")
