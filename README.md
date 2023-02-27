@@ -6,6 +6,10 @@
 
 原项目是论文《Georgios Kissas, Yibo Yang, Eileen Hwuang, Walter R. Witschey, John A. Detre, Paris Perdikaris. "[Machine  learning in cardiovascular flows modeling: Predicting pulse wave  propagation from non-invasive clinical measurements using  physics-informed deep learning.](https://www.sciencedirect.com/science/article/pii/S0045782519305055?dgcid=author)" (2019).》的代码。该论文使用PINN(physics informed neural network)神经网络结构求解Navier-Stokes方程，从而计算主动脉中的血压分布。
 
+注意：代码中的血管序号与论文中的不一致。本代码中的序号和数据均与[PredictiveIntelligenceLab/1DBloodFlowPINNs](https://github.com/PredictiveIntelligenceLab/1DBloodFlowPINNs)保持一致，血管序号和其中的lower bound, upper bound位置如下图所示：
+![](README.assets/血管序号图.jpg)
+
+
 下面介绍本项目中的代码。
 
 ## 代码
