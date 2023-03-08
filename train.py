@@ -216,14 +216,15 @@ if __name__ == "__main__":
                  epoch_draw, dtype=dtype, device=device)
 
         if i_epoch % epoch_recordloss == 0:
-            loss_list.append(loss)
-            loss_measurement_list.append(loss_measurement)
-            loss_residual_list.append(loss_residual)
-            loss_interface_list.append(loss_interface)
+            loss_list.append(loss.detach().cpu())
+            loss_measurement_list.append(loss_measurement.detach().cpu())
+            loss_residual_list.append(loss_residual.detach().cpu())
+            loss_interface_list.append(loss_interface.detach().cpu())
 
         if i_epoch % epoch_save == 0:
             # loss list
             path_save_loss = "result_loss"
+            os.makedirs(path_save_loss, exist_ok=True)
             np.save(os.path.join(path_save_loss, "loss.npy"),
                     np.array(loss_list))
             np.save(os.path.join(path_save_loss, "loss_m.npy"),

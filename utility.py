@@ -104,9 +104,9 @@ def set_x_measurement_residual(n_measurement, n_residual, no_bound_vessel_id):
     ])
     bif_points = np.array([
         upper_bound[3-1],
-        upper_bound[2-1],
-        upper_bound[6-1]
-    ])
+        upper_bound[6-1],
+        upper_bound[2-1]
+    ]) # same as train.py id_interface
 
     x_measurement = []
     for i in range(n_vessel):
@@ -298,6 +298,7 @@ class Preprocess(object):
             "L": self.L,
             "T": self.T
         }
+        os.makedirs("result_model")
         file_js = open(os.path.join(
             "result_model", "pre_parameters.json"), "w")
         file_js.write(json.dumps(dic))
@@ -377,6 +378,7 @@ def draw(test_points, net, i_draw, dtype, device):
         if i+1 in [5]:
             plt.xlabel("t in s")
     plt.suptitle('Comparative velocity')
+    os.makedirs("result_Velocity", exist_ok=True)
     plt.savefig(
         f"./result_Velocity/Comparative_Velocity_{i_draw:03}.jpg")
     plt.close(1)
@@ -398,6 +400,7 @@ def draw(test_points, net, i_draw, dtype, device):
         if i+1 in [5]:
             plt.xlabel("t in s")
     plt.suptitle('Comparative pressure')
+    os.makedirs("result_Pressure", exist_ok=True)
     plt.savefig(
         f"./result_Pressure/Comparative_Pressure_{i_draw:03}.jpg")
     plt.close(2)
